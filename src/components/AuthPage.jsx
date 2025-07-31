@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Button } from './ui/button';
@@ -60,68 +61,73 @@ const AuthPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 flex items-center justify-center p-6">
+      <div className="w-full max-w-lg">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-white">
                 <rect x="3" y="3" width="18" height="18" rx="2"/>
                 <path d="M9 9l6 6M15 9l-6 6"/>
               </svg>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
               CodeArena
             </h1>
           </div>
-          <p className="text-muted-foreground">
-            {isLogin ? 'Welcome back!' : 'Join the competitive programming community'}
+          <p className="text-muted-foreground text-lg">
+            {isLogin ? 'Welcome back to your coding journey!' : 'Join thousands of competitive programmers'}
           </p>
         </div>
 
-        <Card className="shadow-xl border-0 bg-card/50 backdrop-blur-sm">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">
+        <Card className="shadow-2xl border border-border/50 bg-card/95 backdrop-blur-sm">
+          <CardHeader className="space-y-2 pb-6">
+            <CardTitle className="text-3xl text-center font-bold">
               {isLogin ? 'Sign In' : 'Create Account'}
             </CardTitle>
-            <CardDescription className="text-center">
+            <CardDescription className="text-center text-base">
               {isLogin 
                 ? 'Enter your credentials to access your account' 
-                : 'Fill in your details to get started'
+                : 'Fill in your details to get started with CodeArena'
               }
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          
+          <CardContent className="px-8 pb-8">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {!isLogin && (
                 <>
-                  <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input
-                      id="fullName"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      placeholder="Enter your full name"
-                      required={!isLogin}
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="fullName" className="text-sm font-medium">Full Name</Label>
+                      <Input
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        placeholder="Enter your full name"
+                        className="h-11"
+                        required={!isLogin}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="username" className="text-sm font-medium">Username</Label>
+                      <Input
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        placeholder="Choose a username"
+                        className="h-11"
+                        required={!isLogin}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="username">Username</Label>
-                    <Input
-                      id="username"
-                      name="username"
-                      value={formData.username}
-                      onChange={handleInputChange}
-                      placeholder="Choose a username"
-                      required={!isLogin}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">University Email</Label>
+                    <Label htmlFor="email" className="text-sm font-medium">University Email</Label>
                     <Input
                       id="email"
                       name="email"
@@ -129,6 +135,7 @@ const AuthPage = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="your.email@university.edu"
+                      className="h-11"
                       required={!isLogin}
                     />
                   </div>
@@ -136,19 +143,20 @@ const AuthPage = () => {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="enrollmentNo">Enrollment Number</Label>
+                <Label htmlFor="enrollmentNo" className="text-sm font-medium">Enrollment Number</Label>
                 <Input
                   id="enrollmentNo"
                   name="enrollmentNo"
                   value={formData.enrollmentNo}
                   onChange={handleInputChange}
                   placeholder="Enter your enrollment number"
+                  className="h-11"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-sm font-medium">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -157,7 +165,7 @@ const AuthPage = () => {
                     value={formData.password}
                     onChange={handleInputChange}
                     placeholder="Enter your password"
-                    className="pr-12"
+                    className="pr-12 h-11"
                     required
                   />
                   <EyeIcon 
@@ -169,7 +177,7 @@ const AuthPage = () => {
 
               {!isLogin && (
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" className="text-sm font-medium">Confirm Password</Label>
                   <div className="relative">
                     <Input
                       id="confirmPassword"
@@ -178,7 +186,7 @@ const AuthPage = () => {
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
                       placeholder="Confirm your password"
-                      className="pr-12"
+                      className="pr-12 h-11"
                       required={!isLogin}
                     />
                     <EyeIcon 
@@ -189,34 +197,45 @@ const AuthPage = () => {
                 </div>
               )}
 
-              <Button type="submit" className="w-full">
-                {isLogin ? 'Sign In' : 'Create Account'}
+              <Button type="submit" className="w-full h-12 text-base font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-200">
+                {isLogin ? 'Sign In to CodeArena' : 'Create Account'}
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-muted-foreground">
+            <div className="mt-8 text-center">
+              <p className="text-muted-foreground">
                 {isLogin ? "Don't have an account?" : "Already have an account?"}
                 <button
                   type="button"
                   onClick={() => setIsLogin(!isLogin)}
-                  className="ml-1 text-primary hover:underline font-medium"
+                  className="ml-2 text-orange-600 hover:text-orange-700 font-semibold hover:underline transition-colors"
                 >
-                  {isLogin ? 'Sign up' : 'Sign in'}
+                  {isLogin ? 'Sign up here' : 'Sign in here'}
                 </button>
               </p>
             </div>
 
             {/* Demo credentials hint */}
             {isLogin && (
-              <div className="mt-4 p-3 bg-muted/50 rounded-lg text-sm text-muted-foreground">
-                <p className="font-medium mb-1">Demo Credentials:</p>
-                <p>Enrollment: CS2021001</p>
-                <p>Password: Any password</p>
+              <div className="mt-6 p-4 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 border border-orange-200/50 dark:border-orange-800/30 rounded-lg">
+                <div className="text-center">
+                  <p className="font-semibold text-orange-800 dark:text-orange-200 mb-2">🚀 Demo Credentials</p>
+                  <div className="text-sm text-orange-700 dark:text-orange-300 space-y-1">
+                    <p><span className="font-medium">Enrollment:</span> CS2021001</p>
+                    <p><span className="font-medium">Password:</span> Any password works!</p>
+                  </div>
+                </div>
               </div>
             )}
           </CardContent>
         </Card>
+
+        {/* Footer */}
+        <div className="text-center mt-8">
+          <p className="text-sm text-muted-foreground">
+            By continuing, you agree to CodeArena's Terms of Service and Privacy Policy
+          </p>
+        </div>
       </div>
     </div>
   );
